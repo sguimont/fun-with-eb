@@ -29,7 +29,7 @@ script:
   - cp config .elasticbeanstalk/
 
 after_script:
-  - mongo test --eval "db.dropDatabase()"
+  - mongo test --eval "db.things.drop()"
   - ./node_modules/.bin/istanbul cover grunt -- -u tdd
   - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
 
