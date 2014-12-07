@@ -2,7 +2,7 @@ var express = require("express"),
     mongoose = require("mongoose"),
     app = express();
 
-mongoose.connect("mongodb://localhost/test", function (err) {
+mongoose.connect("mongodb://user:user@ds061200.mongolab.com:61200/dev-services", function (err) {
   if (!err) {
     console.log("Connected to MongoDB");
   } else {
