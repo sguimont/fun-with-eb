@@ -1,8 +1,9 @@
+build_image: node/0.10-onbuild
+
 language: node_js
 
 node_js:
   - 0.10.30
-
 
 services:
   - mongodb
