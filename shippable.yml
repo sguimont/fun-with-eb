@@ -29,9 +29,10 @@ script:
   - cp config .elasticbeanstalk/
 
 after_script:
-  - mongo test --eval "db.things.drop()"
+  - mongo ds061200.mongolab.com:61200/dev-services -u user -p user --eval "db.things.drop()"
   - ./node_modules/.bin/istanbul cover grunt -- -u tdd
   - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
+  - mongo ds061200.mongolab.com:61200/dev-services -u user -p user --eval "db.things.drop()"
 
 after_success :
   - $EB_TOOLS/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh
