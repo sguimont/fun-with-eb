@@ -1,29 +1,37 @@
-# Language setting
 language: node_js
 
-# Version number
 node_js:
   - 0.10.30
 
-# Mongo binds to 127.0.0.1 by default
 services:
   - mongodb
 
-# The path for Xunit to output test reports
 env:
   - XUNIT_FILE=shippable/testresults/result.xml
+  global:
+    - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
+    - secure: k4YNnKqo9mNpagQ1/deJad8MhOcTdS1wdF9Sb1y8etJEkM2QUGwNll2ZVGvd5lDJ7XCau/rCcxAwsue02d7HJKtILUnG+nH2FMTAAYs2HnrUsrnwY3Mp03PFWONfJfTGSNbCWUnkStTfHGTmg3lBzkgxSwIXO/aaO+bzA8W/h7lvVNl8HQ7V/tvks6kNRLYrCzRkR0xApj6rIC0xoMwFcncQ3JrPAxk5WQnDtRkKByknBqnRBJJfHogAVpYMIg/K5VGwuY4v92hTzgzz77Z8ZS2RzDC3+mXoyRATSWvdDunX1aBgbygcK/wyDRxxKOt71iPGWVQWeO8vkIu3ONXaiA==
 
-# Create directories for test and coverage reports
+before_install:
+  - if [ ! -e $EB_TOOLS ]; then wget -q -O /tmp/eb.zip https://s3.amazonaws.com/elasticbeanstalk/cli/$EB_VERSION.zip && mkdir -p $EB_TOOLS_DIR && unzip /tmp/eb.zip -d $EB_TOOLS_DIR; fi
+
 before_script:
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
+  - mkdir -p ~/.elasticbeanstalk
+  - echo 'AWSAccessKeyId=AKIAIIBVHV2PRMBKFWOA' >> ~/.elasticbeanstalk/aws_credential_file
+  - echo 'AWSSecretKey='$AWSSecretKey >> ~/.elasticbeanstalk/aws_credential_file
 
-# Running the tests with grunt
 script:
   - grunt
+  - mkdir -p .elasticbeanstalk
+  - cp config .elasticbeanstalk/
 
-# Tell istanbul to generate a coverage report
 after_script:
   - mongo test --eval "db.dropDatabase()"
   - ./node_modules/.bin/istanbul cover grunt -- -u tdd
   - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
+
+after_success :
+  - $EB_TOOLS/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh
+  - export PATH=$PATH:$EB_TOOLS/eb/linux/python2.7/ && virtualenv ve && source ve/bin/activate && pip install boto==2.14.0 && eb push

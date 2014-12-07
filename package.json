@@ -1,5 +1,5 @@
 {
-  "name": "sample_node_mongo",
+  "name": "fun-with-eb",
   "version": "0.0.0",
   "description": "Test Shippable with EB",
   "main": "index.js",

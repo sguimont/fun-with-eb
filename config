@@ -1,0 +1,6 @@
+[global]
+ApplicationName=fun-with-eb
+DevToolsEndpoint=git.elasticbeanstalk.us-east-1.amazonaws.com
+EnvironmentName=fun-with-eb-env
+Region=us-east-1
+ServiceEndpoint=https://elasticbeanstalk.us-east-1.amazonaws.com
