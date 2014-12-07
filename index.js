@@ -1,6 +1,6 @@
 var express = require("express"),
-    mongoose = require("mongoose"),
-    app = express();
+  mongoose = require("mongoose"),
+  app = express();
 
 mongoose.connect("mongodb://user:user@ds061200.mongolab.com:61200/dev-services", function (err) {
   if (!err) {
@@ -17,11 +17,11 @@ app.get("/", function (req, res) {
 var Thing = require("./model");
 
 app.get("/:name", function (req, res) {
-  Thing.find({ name: req.params.name }, function (err, t) {
+  Thing.find({name: req.params.name}, function (err, t) {
     if (t.length < 1) {
       var thing = new Thing();
       thing.name = req.params.name;
-      thing.save(function(err, savedThing) {
+      thing.save(function (err, savedThing) {
         if (err) {
           res.send(500);
         } else {
@@ -34,4 +34,4 @@ app.get("/:name", function (req, res) {
   });
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
