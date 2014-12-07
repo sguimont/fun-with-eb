@@ -8,8 +8,8 @@ services:
   - mongodb
 
 env:
-  - XUNIT_FILE=shippable/testresults/result.xml
   global:
+    - XUNIT_FILE=shippable/testresults/result.xml
     - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
     - secure: k4YNnKqo9mNpagQ1/deJad8MhOcTdS1wdF9Sb1y8etJEkM2QUGwNll2ZVGvd5lDJ7XCau/rCcxAwsue02d7HJKtILUnG+nH2FMTAAYs2HnrUsrnwY3Mp03PFWONfJfTGSNbCWUnkStTfHGTmg3lBzkgxSwIXO/aaO+bzA8W/h7lvVNl8HQ7V/tvks6kNRLYrCzRkR0xApj6rIC0xoMwFcncQ3JrPAxk5WQnDtRkKByknBqnRBJJfHogAVpYMIg/K5VGwuY4v92hTzgzz77Z8ZS2RzDC3+mXoyRATSWvdDunX1aBgbygcK/wyDRxxKOt71iPGWVQWeO8vkIu3ONXaiA==
 
