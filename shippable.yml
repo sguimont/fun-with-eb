@@ -12,7 +12,7 @@ env:
   global:
     - XUNIT_FILE=shippable/testresults/result.xml
     - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
-    - secure: k4YNnKqo9mNpagQ1/deJad8MhOcTdS1wdF9Sb1y8etJEkM2QUGwNll2ZVGvd5lDJ7XCau/rCcxAwsue02d7HJKtILUnG+nH2FMTAAYs2HnrUsrnwY3Mp03PFWONfJfTGSNbCWUnkStTfHGTmg3lBzkgxSwIXO/aaO+bzA8W/h7lvVNl8HQ7V/tvks6kNRLYrCzRkR0xApj6rIC0xoMwFcncQ3JrPAxk5WQnDtRkKByknBqnRBJJfHogAVpYMIg/K5VGwuY4v92hTzgzz77Z8ZS2RzDC3+mXoyRATSWvdDunX1aBgbygcK/wyDRxxKOt71iPGWVQWeO8vkIu3ONXaiA==
+    - secure: Im8tleFk/0HrqFKVY34Qro4DuRtbJzvPc7UCxyFYGUhg/R7W5NPV3gcwRM4W0AGlYsH9m6e9Ls9NEKUqd1dOC0ETfhojpgm39PRV3v7b6xTw1V41z0Fzxvc3ddNOaa5iVOGeJHE0RlpbdutbPkoj155uGjelJ+NujpG9fAUqEhlZE9kID9m5M2b9IRkMdBvL/wVwoDGPrTAlA2pKriRWX7JsTqjsEaK5TAzusNO9tX/cnb4S93Hmtga5Gw5SJnPgjWltgCw8+k7lH86DiPtiB4sIOOrqm2C1I9fDKw59ERU9HOqPecEmq1KLuvpio+PgNsYR58zKlbzB3o8ZRRWn4w==
 
 before_install:
   - if [ ! -e $EB_TOOLS ]; then wget -q -O /tmp/eb.zip https://s3.amazonaws.com/elasticbeanstalk/cli/$EB_VERSION.zip && mkdir -p $EB_TOOLS_DIR && unzip /tmp/eb.zip -d $EB_TOOLS_DIR; fi
