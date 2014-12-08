@@ -41,4 +41,4 @@ after_success :
   - $EB_TOOLS/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh
   - export PATH=$PATH:$EB_TOOLS/eb/linux/python2.7/ && virtualenv ve && source ve/bin/activate && pip install boto==2.14.0 && eb push
 
-commit_container: sguimont/fun-with-eb
+#commit_container: sguimont/fun-with-eb
