@@ -1,4 +1,4 @@
-build_image: node/0.10-onbuild
+build_image: shippableimages/ubuntu1204_nodejs
 
 language: node_js
 
@@ -27,7 +27,9 @@ before_script:
 script:
   - grunt
   - mkdir -p .elasticbeanstalk
-  - cp config .elasticbeanstalk/
+  - cp aws/config .elasticbeanstalk/
+  - cp aws/environment.config .elasticbeanstalk/
+  - cp aws/node.config .elasticbeanstalk/
 
 after_script:
   - mongo ds061200.mongolab.com:61200/dev-services -u user -p user --eval "db.things.drop()"
