@@ -1,4 +1,4 @@
-build_image: shippableimages/ubuntu1204_nodejs
+#build_image: shippableimages/ubuntu1204_nodejs
 
 language: node_js
 
